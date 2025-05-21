@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ariel Gana | Desarrollador</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="sources/style.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo"><span></span>Ariel Gana<span></span></div>
+        <ul class="nav-links">
+          <li><a href="#about">Sobre mí</a></li>
+          <li><a href="#skills">Habilidades</a></li>
+          <li><a href="#projects">Proyectos</a></li>
+        </ul>
+        <div class="hamburger">
+          <i class="fas fa-bars"></i>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="about" class="hero">
+        <div class="hero-text">
+          <h1>Hola, soy <span id="developer-name"></span></h1>
+          <h2>
+            Desarrollador
+            <span id="developer-role"></span>
+          </h2>
+          <p id="developer-bio"></p>
+          <p id="developer-more" style="display: none"></p>
+          <p id="developer-now" style="display: none"></p>
+          <button id="show-more-btn" class="btn btn-outline">Ver más</button>
+        </div>
+      </section>
+
+      <section id="skills">
+        <h2>Mis Habilidades</h2>
+        <div class="skills-container" id="skills-container"></div>
+      </section>
+
+      <section id="projects">
+        <h2>Mis Proyectos</h2>
+        <div class="projects-grid" id="projects-grid"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="social-links">
+        <a href="#" id="github-link"><i class="fab fa-github"></i></a>
+        <a href="#" id="linkedin-link"><i class="fab fa-linkedin"></i></a>
+        <a href="#" id="email-link"><i class="fas fa-envelope"></i></a>
+      </div>
+      <p>
+        &copy; <span id="current-year"></span> Ariel Gana. Todos los derechos
+        reservados.
+      </p>
+    </footer>
+
+    <script>
+      // Datos del desarrollador (puedes reemplazar estos con tus datos reales)
+      const developerData = {
+        name: "Ariel Gana",
+        role: " Full Stack",
+        bio: "Eh estado desarrollando por mas de 2 años, creando distintas soluciones web con un enfoque en java .",
+        more: "Mis estudios Academicos fueron realizados en inacap el cual estoy graduado el año 2024 con el titulo de analista programador , desde ese entonces eh estado desarrollando diferentes productos y ampliando mis conocimientos para prestar servicios de alta calidad y complejidad ",
+        now: "Actualmente estoy ampliando mis conocimientos en desarrollo python , IA , api Rest entre otros",
+        photo: "https://via.placeholder.com/250",
+        skills: [
+          { name: "JavaScript", icon: "fab fa-js", level: "Avanzado" },
+          { name: "HTML/CSS", icon: "fab fa-html5", level: "Experto" },
+          { name: "Css", icon: "fa-brands fa-css3-alt", level: "Avanzado" },
+          { name: "Node.js", icon: "fab fa-node-js", level: "Intermedio" },
+          { name: "Python", icon: "fab fa-python", level: "Intermedio" },
+          { name: "React", icon: "fab fa-react", level: "Avanzado" },
+          { name: "Git", icon: "fab fa-git-alt", level: "Avanzado" },
+        ],
+        projects: [
+          {
+            name: "E-commerce",
+            description:
+              "Plataforma de comercio electrónico con carrito de compras y pasarela de pago.",
+            technologies: "Html, Java Script",
+            image:
+              "https://res.cloudinary.com/ddpaidjj6/image/upload/v1745448352/v1rzcdugm79zupm0ogff.png",
+            demo: "https://arielgana.github.io/Tienda/",
+            code: "https://github.com/ArielGana/Tienda",
+          },
+          {
+            name: "Wiki-Arm",
+            description:
+              "Aplicación para investigar sobres las diferentes armas de fuego creadas. Cuenta con categorias, PDF, Videos etc....",
+            technologies: "React, Java Script, Mysql, Css, Node.js  ",
+            image:
+              "https://res.cloudinary.com/ddpaidjj6/image/upload/v1745448762/nuxerk6ktpmwgt3pbbh6.png",
+            demo: "https://wiki-gun-li8u.vercel.app/",
+            code: "https://github.com/ArielGana/WikiGun",
+          },
+          {
+            name: "App web para restaurantes",
+            description:
+              "Aplicación que automatiza procesos asociados a restaurantes.",
+            technologies: "React, Node.js, Mysql, ",
+            image:
+              "https://res.cloudinary.com/ddpaidjj6/image/upload/v1745449129/gaulds1khf3ndodh631c.png",
+            demo: "#",
+            code: "https://github.com/ArielGana/RestauranteApp",
+          },
+        ],
+        social: {
+          github: "https://github.com/ArielGana",
+          linkedin: "https://linkedin.com/in/ariel-gana",
+          email: "mailto:ganaariel5@gmail.com",
+        },
+      };
+
+      // Función para inicializar la aplicación
+      function initApp() {
+        // Actualizar información personal
+        document.getElementById("developer-name").textContent =
+          developerData.name;
+        document.getElementById("developer-role").textContent =
+          developerData.role;
+        document.getElementById("developer-bio").textContent =
+          developerData.bio;
+
+        // Actualizar año actual en el footer
+        document.getElementById("current-year").textContent =
+          new Date().getFullYear();
+
+        // Actualizar enlaces sociales
+        document.getElementById("github-link").href =
+          developerData.social.github;
+        document.getElementById("linkedin-link").href =
+          developerData.social.linkedin;
+
+        document.getElementById("email-link").href = developerData.social.email;
+
+        // Generar habilidades
+        const skillsContainer = document.getElementById("skills-container");
+        developerData.skills.forEach((skill) => {
+          const skillCard = document.createElement("div");
+          skillCard.className = "skill-card";
+          skillCard.innerHTML = `
+                    <div class="skill-icon">
+                        <i class="${skill.icon}"></i>
+                    </div>
+                    <h3>${skill.name}</h3>
+                    <p>Nivel: ${skill.level}</p>
+                `;
+          skillsContainer.appendChild(skillCard);
+        });
+
+        // Generar proyectos
+        const projectsGrid = document.getElementById("projects-grid");
+        developerData.projects.forEach((project) => {
+          const projectCard = document.createElement("div");
+          projectCard.className = "project-card";
+          projectCard.innerHTML = `
+                    <div class="project-image">
+                        <img src="${project.image}" alt="${project.name}">
+                    </div>
+                    <div class="project-info">
+                        <h3>${project.name}</h3>
+                        <p>${project.description}</p>
+                        <p><strong>Tecnologías:</strong> ${project.technologies}</p>
+                        <div class="project-links">
+                            <a href="${project.demo}" class="btn" target="_blank">Demo</a>
+                            <a href="${project.code}" class="btn btn-outline" target="_blank">Código</a>
+                        </div>
+                    </div>
+                `;
+          projectsGrid.appendChild(projectCard);
+        });
+
+        // Menú hamburguesa para móviles
+        const hamburger = document.querySelector(".hamburger");
+        const navLinks = document.querySelector(".nav-links");
+
+        hamburger.addEventListener("click", () => {
+          navLinks.classList.toggle("active");
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("active");
+          });
+        });
+
+        // Manejar el formulario de contacto
+        const contactForm = document.getElementById("contact-form");
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+
+          // Aquí podrías agregar código para enviar el formulario a un servidor
+          console.log("Formulario enviado:", { name, email, message });
+
+          alert(
+            `Gracias ${name}, tu mensaje ha sido enviado. Me pondré en contacto contigo pronto.`
+          );
+          contactForm.reset();
+        });
+      }
+      // Mostrar contenido adicional al hacer clic en "Ver más"
+      document.getElementById("developer-more").textContent =
+        developerData.more;
+      document.getElementById("developer-now").textContent = developerData.now;
+
+      document.getElementById("show-more-btn").addEventListener("click", () => {
+        document.getElementById("developer-more").style.display = "block";
+        document.getElementById("developer-now").style.display = "block";
+        document.getElementById("show-more-btn").style.display = "none";
+      });
+
+      // Inicializar la aplicación cuando el DOM esté cargado
+      document.addEventListener("DOMContentLoaded", initApp);
+    </script>
+  </body>
+</html>
